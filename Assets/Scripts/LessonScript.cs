@@ -8,12 +8,14 @@ using TMPro;
 
 public class LessonScript : MonoBehaviour
 {
+    public GameObject nameWidget, descriptionWidget;
+
     void Start()
     {
-        GameObject nameWidget = transform.GetChild(0).gameObject;
         nameWidget.GetComponent<TMP_Text>().text = TextInput.name;
-        GameObject descriptionWidget = transform.GetChild(1).gameObject;
         descriptionWidget.GetComponent<TMP_Text>().text = TextInput.description;
+
+
 
         //Destroy(buttonTemplate);
     }

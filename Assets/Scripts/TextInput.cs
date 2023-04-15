@@ -14,7 +14,7 @@ public class TextInput : MonoBehaviour
     public static string name;
     public static string description;
     public static Model[] models;
-    private int codeLength = 8;
+    public static int codeLength = 8, modelsNumber;
 
     public void ReadStringInput(string s)
     {
@@ -58,8 +58,10 @@ public class TextInput : MonoBehaviour
                         name = Lesson.CreateFromJSON(ddd.downloadHandler.text).name;
                         description = Lesson.CreateFromJSON(ddd.downloadHandler.text).description;
                         models = Lesson.CreateFromJSON(ddd.downloadHandler.text).models;
+                       
+                        modelsNumber = models.Length;
                         Debug.Log(models[0].name);
-                        SceneManager.LoadScene("Scene B");
+                        SceneManager.LoadScene("Lesson Scene");
                     }
                     else
                     {
@@ -110,6 +112,7 @@ public class Model
 {
     public string name;
     public string description;
+    public string previewLink;
 
     public static Model CreateFromJSON(string jsonString)
     {
