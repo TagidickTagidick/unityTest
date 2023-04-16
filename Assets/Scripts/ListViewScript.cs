@@ -6,48 +6,35 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Net;
-using UnityEngine.SceneManagement;
 
 public class ListViewScript : MonoBehaviour
 {
 
-    public GameObject cardPrefab;
-    public Texture2D tex;
+    public GameObject cardPrefab, createdCard;
+    public Texture tex;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         for (int i = 0; i < TextInput.models.Length; i++)
         {
-            GameObject createdCard = Instantiate(cardPrefab, this.transform);
+            createdCard = Instantiate(cardPrefab, this.transform);
             createdCard.transform.GetChild(0).GetComponent<TMP_Text>().text = TextInput.models[i].name;
-            Debug.Log(TextInput.models[i].previewLink);
-            StartCoroutine(LoadTextureFromServer("http://api.ar-education.xyz" + TextInput.models[i].previewLink));
-            createdCard.transform.GetChild(1).GetComponent<Renderer>().material.mainTexture = tex;
+            Debug.Log("http://api.ar-education.xyz" + TextInput.models[i].previewLink);
+            StartCoroutine(DownloadImage("http://api.ar-education.xyz" + TextInput.models[i].previewLink));
             createdCard.transform.GetChild(2).GetComponent<TMP_Text>().text = TextInput.models[i].description;
         }
     }
 
-    IEnumerator LoadTextureFromServer(string url)
+    IEnumerator DownloadImage(string MediaUrl)
     {
-        var request = UnityWebRequestTexture.GetTexture(url);
-
+        UnityWebRequest request = UnityWebRequestTexture.GetTexture(MediaUrl);
         yield return request.SendWebRequest();
-
-        if (!request.isHttpError && !request.isNetworkError)
-        {
-            tex = DownloadHandlerTexture.GetContent(request);
-        }
+        if (request.isNetworkError || request.isHttpError)
+            Debug.Log(request.error);
         else
         {
-            Debug.LogErrorFormat("error request [{0}, {1}]", url, request.error);
-
-            tex = null;
+            tex = ((DownloadHandlerTexture)request.downloadHandler).texture;
+            createdCard.transform.GetChild(1).GetComponent<RawImage>().texture = tex;
         }
-
-        request.Dispose();
     }
-
-
 }

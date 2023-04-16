@@ -144,6 +144,11 @@ public class AnchorCreator : MonoBehaviour
         if (IsCreated)
         {
             scaleSize = scaleSlider.value;
+            if (scaleSlider.value > 1)
+            {
+                scaleSize *= scaleSize;
+            }
+            Debug.Log(scaleSize);
             createdModel.transform.localScale = startScaleSize * scaleSize;
         }
     }
