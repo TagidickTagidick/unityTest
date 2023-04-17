@@ -19,8 +19,8 @@ public class ModelDownloader : MonoBehaviour
             name = "Model"
         };
 
-        DownloadFile("http://api.ar-education.xyz/project/models/2/content");
-        //DownloadFile("https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxVertexColors/glTF-Embedded/BoxVertexColors.gltf");
+        //DownloadFile("http://api.ar-education.xyz/project/models/2/content");
+        DownloadFile("https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxVertexColors/glTF-Embedded/BoxVertexColors.gltf");
     }
     public void DownloadFile(string url)
     {
@@ -47,7 +47,7 @@ public class ModelDownloader : MonoBehaviour
     {
         //ResetWrapper();
         GameObject model = Importer.LoadFromFile(path);
-        model.transform.SetParent(wrapper.transform);
+        //model.transform.SetParent(wrapper.transform);
     }
 
     IEnumerator GetFileRequest(string url)
