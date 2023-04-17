@@ -50,6 +50,9 @@ public class AnchorCreator : MonoBehaviour
     // The ARAnchorManager handles the processing of all anchors and updates their position and rotation.
     void Awake()
     {
+        //m_AnchorPrefab = ModelDownloader.loadedModel;
+
+
         m_RaycastManager = GetComponent<ARRaycastManager>();
         m_AnchorManager = GetComponent<ARAnchorManager>();
         m_PlaneManager = GetComponent<ARPlaneManager>();

@@ -113,6 +113,7 @@ public class Model
     public string name;
     public string description;
     public string previewLink;
+    public string contentLink;
 
     public static Model CreateFromJSON(string jsonString)
     {

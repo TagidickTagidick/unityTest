@@ -240,7 +240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &364725768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,12 +250,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 364725767}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daba88a30f38f3f4d8df0d146acfcd08, type: 3}
+  m_Script: {fileID: 11500000, guid: 39826933931adbb4c8b795aa61264232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadedObj: {fileID: 2238829678999566457, guid: 54e7e3d32d8256a488210dc198e49f0c,
-    type: 3}
-  spawnPoint: {fileID: 0}
+  modelUrl: http://api.ar-education.xyz/project/models/2/content
 --- !u!4 &364725769
 Transform:
   m_ObjectHideFlags: 0

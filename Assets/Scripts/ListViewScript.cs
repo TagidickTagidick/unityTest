@@ -28,7 +28,7 @@ public class ListViewScript : MonoBehaviour
         {
             createdCard = Instantiate(cardPrefab, this.transform);
             createdCard.transform.GetChild(0).GetComponent<TMP_Text>().text = TextInput.models[i].name;
-            Debug.Log("http://api.ar-education.xyz" + TextInput.models[i].previewLink);
+            Debug.Log("http://api.ar-education.xyz" + TextInput.models[i].contentLink);
             //StartCoroutine(DownloadImage("http://api.ar-education.xyz" + TextInput.models[i].previewLink));
             createdCard.transform.GetChild(2).GetComponent<TMP_Text>().text = TextInput.models[i].description;
         }
