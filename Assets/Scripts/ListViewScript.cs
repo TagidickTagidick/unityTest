@@ -13,6 +13,15 @@ public class ListViewScript : MonoBehaviour
     public GameObject cardPrefab, createdCard;
     public Texture tex;
 
+    void Awake()
+    {
+        for (int i = 0; i < TextInput.models.Length; i++)
+        {
+            StartCoroutine(DownloadImage("http://api.ar-education.xyz" + TextInput.models[i].previewLink));
+            //StartCoroutine(DownloadImage("https://bipbap.ru/wp-content/uploads/2021/11/1619541010_52-oir_mobi-p-nyashnie-kotiki-zhivotnie-krasivo-foto-57.jpg"));
+        }
+    }
+
     void Start()
     {
         for (int i = 0; i < TextInput.models.Length; i++)
@@ -20,7 +29,7 @@ public class ListViewScript : MonoBehaviour
             createdCard = Instantiate(cardPrefab, this.transform);
             createdCard.transform.GetChild(0).GetComponent<TMP_Text>().text = TextInput.models[i].name;
             Debug.Log("http://api.ar-education.xyz" + TextInput.models[i].previewLink);
-            StartCoroutine(DownloadImage("http://api.ar-education.xyz" + TextInput.models[i].previewLink));
+            //StartCoroutine(DownloadImage("http://api.ar-education.xyz" + TextInput.models[i].previewLink));
             createdCard.transform.GetChild(2).GetComponent<TMP_Text>().text = TextInput.models[i].description;
         }
     }
