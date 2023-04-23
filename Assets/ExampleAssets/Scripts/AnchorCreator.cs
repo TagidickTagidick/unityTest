@@ -60,6 +60,8 @@ public class AnchorCreator : MonoBehaviour
 
         IsCreated = false;
         startScaleSize = m_AnchorPrefab.transform.localScale;
+
+        //m_AnchorPrefab = ModelDownloader.model;
     }
 
     void Update()
