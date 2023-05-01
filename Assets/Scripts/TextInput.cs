@@ -14,7 +14,8 @@ public class TextInput : MonoBehaviour
     public static string name;
     public static string description;
     public static Model[] models;
-    public static int codeLength = 8, modelsNumber;
+    public static string token;
+    public static int codeLength = 6, modelsNumber;
 
     public void ReadStringInput(string s)
     {
@@ -46,7 +47,7 @@ public class TextInput : MonoBehaviour
 
             if (www.result == UnityWebRequest.Result.Success)
             {
-                string token = JsonUtility.FromJson<Token>(www.downloadHandler.text).access_token;
+                token = JsonUtility.FromJson<Token>(www.downloadHandler.text).access_token;
                 using (UnityWebRequest ddd = UnityWebRequest.Get($"http://api.ar-education.xyz/school/lessons/active/{value}"))
                 {
                     ddd.SetRequestHeader("Authorization", $"Bearer {token}");
