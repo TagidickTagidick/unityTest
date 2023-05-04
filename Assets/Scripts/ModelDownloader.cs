@@ -19,7 +19,7 @@ public class ModelDownloader : MonoBehaviour
             name = "Model"
         };
 
-        StartCoroutine(GetFileRequest("http://api.ar-education.xyz/project/models/2/content"));
+        StartCoroutine(GetFileRequest("http://api.ar-education.xyz/project/models/4/content"));
         //DownloadFile("http://api.ar-education.xyz/project/models/2/content");
         //DownloadFile("https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxVertexColors/glTF-Embedded/BoxVertexColors.gltf");
     }
@@ -75,16 +75,16 @@ public class ModelDownloader : MonoBehaviour
 
         using (UnityWebRequest ddd = UnityWebRequest.Get(url))
         {
-            Debug.Log(TextInput.token);
             ddd.SetRequestHeader("Authorization", $"Bearer {TextInput.token}");
             yield return ddd.SendWebRequest();
 
             if (ddd.result == UnityWebRequest.Result.Success)
             {
                 //path = GetFilePath(Application.dataPath + "Export");
+                Debug.Log(ddd.downloadHandler.data);
                 byte[] bytes = ddd.downloadHandler.data;
-                File.WriteAllBytes(Application.dataPath + "/Export.glb", bytes);
-                model = Importer.LoadFromFile(Application.dataPath + "/Export.glb");
+                File.WriteAllBytes(Application.dataPath + "/Export.gltf", bytes);
+                model = Importer.LoadFromFile(Application.dataPath + "/Export.gltf");
             }
             else
             {
