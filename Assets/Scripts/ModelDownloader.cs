@@ -7,7 +7,7 @@ using Siccity.GLTFUtility;
 
 public class ModelDownloader : MonoBehaviour
 {
-
+    [SerializeField]
     public static GameObject wrapper, model;
     string filePath, path;
 
@@ -19,8 +19,8 @@ public class ModelDownloader : MonoBehaviour
             name = "Model"
         };
 
-        StartCoroutine(GetFileRequest("http://api.ar-education.xyz/project/models/4/content"));
-        //DownloadFile("http://api.ar-education.xyz/project/models/2/content");
+        //StartCoroutine(GetFileRequest("http://api.ar-education.xyz/project/models/4/content"));
+        StartCoroutine(GetFileRequest("http://api.ar-education.xyz/project/models/11/content"));
         //DownloadFile("https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxVertexColors/glTF-Embedded/BoxVertexColors.gltf");
     }
     public void DownloadFile(string url)
@@ -85,6 +85,7 @@ public class ModelDownloader : MonoBehaviour
                 byte[] bytes = ddd.downloadHandler.data;
                 File.WriteAllBytes(Application.dataPath + "/Export.gltf", bytes);
                 model = Importer.LoadFromFile(Application.dataPath + "/Export.gltf");
+                
             }
             else
             {
