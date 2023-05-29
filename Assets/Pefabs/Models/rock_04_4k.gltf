@@ -59,28 +59,11 @@
     },
     {
       "sampler": 0,
-      "source": 1
+      "source": 0
     },
     {
       "sampler": 0,
-      "source": 2
-    }
-  ],
-  "images": [
-    {
-      "mimeType": "image/jpeg",
-      "name": "rock_04_nor_gl_4k",
-      "uri": "textures/rock_04_nor_gl_4k.jpg"
-    },
-    {
-      "mimeType": "image/jpeg",
-      "name": "rock_04_diff_4k",
-      "uri": "textures/rock_04_diff_4k.jpg"
-    },
-    {
-      "mimeType": "image/jpeg",
-      "name": "rock_04_rough_4k",
-      "uri": "textures/rock_04_rough_4k.jpg"
+      "source": 0
     }
   ],
   "accessors": [
