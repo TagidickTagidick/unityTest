@@ -18,6 +18,24 @@
       "name": "sphere_gltf"
     }
   ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "rock_04",
+      "normalTexture": {
+        "index": 0
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 1
+        },
+        "metallicFactor": 0,
+        "metallicRoughnessTexture": {
+          "index": 2
+        }
+      }
+    }
+  ],
   "meshes": [
     {
       "name": "Sphere.001",
@@ -41,11 +59,28 @@
     },
     {
       "sampler": 0,
-      "source": 0
+      "source": 1
     },
     {
       "sampler": 0,
-      "source": 0
+      "source": 2
+    }
+  ],
+  "images": [
+    {
+      "mimeType": "image/jpeg",
+      "name": "rock_04_nor_gl_4k",
+      "uri": "textures/rock_04_nor_gl_4k.jpg"
+    },
+    {
+      "mimeType": "image/jpeg",
+      "name": "rock_04_diff_4k",
+      "uri": "textures/rock_04_diff_4k.jpg"
+    },
+    {
+      "mimeType": "image/jpeg",
+      "name": "rock_04_rough_4k",
+      "uri": "textures/rock_04_rough_4k.jpg"
     }
   ],
   "accessors": [
