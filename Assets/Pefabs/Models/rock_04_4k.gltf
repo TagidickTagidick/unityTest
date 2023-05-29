@@ -18,24 +18,6 @@
       "name": "sphere_gltf"
     }
   ],
-  "materials": [
-    {
-      "doubleSided": true,
-      "name": "rock_04",
-      "normalTexture": {
-        "index": 0
-      },
-      "pbrMetallicRoughness": {
-        "baseColorTexture": {
-          "index": 1
-        },
-        "metallicFactor": 0,
-        "metallicRoughnessTexture": {
-          "index": 2
-        }
-      }
-    }
-  ],
   "meshes": [
     {
       "name": "Sphere.001",
