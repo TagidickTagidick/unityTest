@@ -1,10 +1,10 @@
-﻿using Dummiesman;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 //
 // This script allows us to create anchors with
@@ -19,7 +19,7 @@ public class AnchorCreator : MonoBehaviour
 {
     // This is the prefab that will appear every time user is clicking.
     [SerializeField]
-    GameObject m_AnchorPrefab;
+    public GameObject m_AnchorPrefab;
 
     public GameObject rotationSliderActivator, scaleSliderActivator;//Sliders
     public Slider rotationSlider, scaleSlider;//Sliders
@@ -50,7 +50,8 @@ public class AnchorCreator : MonoBehaviour
     // The ARAnchorManager handles the processing of all anchors and updates their position and rotation.
     void Awake()
     {
-        //m_AnchorPrefab = ModelDownloader.loadedModel;
+        StartCoroutine(WaitUntilModelDownloaded());
+        
 
 
         m_RaycastManager = GetComponent<ARRaycastManager>();
@@ -61,6 +62,14 @@ public class AnchorCreator : MonoBehaviour
         IsCreated = false;
         startScaleSize = m_AnchorPrefab.transform.localScale;
 
+        //m_AnchorPrefab = ModelDownloader.model.transform.GetChild(1).gameObject;
+        //Тут надо сделать ожидание подгрузки модели
+
+    }
+
+    IEnumerator WaitUntilModelDownloaded()
+    {
+        yield return new WaitUntil(() => ModelDownloader.isModelDownloaded);
         m_AnchorPrefab = ModelDownloader.model;
     }
 

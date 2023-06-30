@@ -9,7 +9,8 @@ public class ModelDownloader : MonoBehaviour
 {
     [SerializeField]
     public static GameObject wrapper, model;
-    string filePath, path;
+    string filePath, path, token;
+    public static bool isModelDownloaded = false;
 
     private void Start()
     {
@@ -19,9 +20,7 @@ public class ModelDownloader : MonoBehaviour
             name = "Model"
         };
 
-        //StartCoroutine(GetFileRequest("http://api.ar-education.xyz/project/models/4/content"));
-        StartCoroutine(GetFileRequest("http://api.ar-education.xyz/project/models/11/content"));
-        //DownloadFile("https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxVertexColors/glTF-Embedded/BoxVertexColors.gltf");
+        StartCoroutine(GetToken("http://auth.ar-education.xyz/realms/ar_edu/protocol/openid-connect/token"));
     }
     public void DownloadFile(string url)
     {
@@ -46,46 +45,52 @@ public class ModelDownloader : MonoBehaviour
 
     void LoadModel(string path)
     {
-        //ResetWrapper();
         GameObject model = Importer.LoadFromFile(path);
-        //model.transform.SetParent(wrapper.transform);
     }
 
-    /*IEnumerator GetFileRequest(string url)
+    IEnumerator GetToken(string url)
     {
-        using (UnityWebRequest req = UnityWebRequest.Get(url))
+        WWWForm form = new WWWForm();
+        form.AddField("grant_type", "password");
+        form.AddField("client_id", "ArCore");
+        form.AddField("username", "457101af-6b98-4587-93c4-6b216325d0b5");
+        form.AddField("password", "123");
+        form.AddField("scope", "School");
+
+        using (UnityWebRequest www = UnityWebRequest.Post(url, form))
         {
-            req.downloadHandler = new DownloadHandlerFile(GetFilePath(url));
-            yield return req.SendWebRequest();
-            if (req.isNetworkError || req.isHttpError)
+            yield return www.SendWebRequest();
+
+            if(www.result == UnityWebRequest.Result.Success)
             {
-                // Log any errors that may happen
-                Debug.Log($"{req.error} : {req.downloadHandler.text}");
+                token = JsonUtility.FromJson<Token>(www.downloadHandler.text).access_token;
+                StartCoroutine(GetFileRequest("http://api.ar-education.xyz/project/models/12/content"));
             }
             else
             {
-                // Save the model into a new wrapper
-                LoadModel(path);
+                Debug.Log(www.error);
             }
         }
-    }*/
+    }
 
     IEnumerator GetFileRequest(string url)
     {
 
         using (UnityWebRequest ddd = UnityWebRequest.Get(url))
         {
-            ddd.SetRequestHeader("Authorization", $"Bearer {TextInput.token}");
+            Debug.Log(token);
+            ddd.SetRequestHeader("Authorization", $"Bearer {token}");
             yield return ddd.SendWebRequest();
 
             if (ddd.result == UnityWebRequest.Result.Success)
             {
-                //path = GetFilePath(Application.dataPath + "Export");
                 Debug.Log(ddd.downloadHandler.data);
                 byte[] bytes = ddd.downloadHandler.data;
                 File.WriteAllBytes(Application.dataPath + "/Export.gltf", bytes);
                 model = Importer.LoadFromFile(Application.dataPath + "/Export.gltf");
-                
+                isModelDownloaded = true;
+                model.SetActive(false);
+                //AnchorCreator.m_AnchorPrefab = model;
             }
             else
             {

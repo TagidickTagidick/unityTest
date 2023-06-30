@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -104,7 +104,7 @@ NavMeshSettings:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_BuildSettings:
-    serializedVersion: 2
+    serializedVersion: 3
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 2
@@ -117,7 +117,7 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualTileSize: 0
     tileSize: 256
-    accuratePlacement: 0
+    buildHeightMesh: 0
     maxJobWorkers: 0
     preserveTilesOutsideBounds: 0
     debug:
@@ -303,9 +303,17 @@ Camera:
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -363,6 +371,7 @@ MonoBehaviour:
   m_AutoFocus: 1
   m_LightEstimation: 0
   m_FacingDirection: 1
+  m_RenderMode: 0
 --- !u!114 &505072770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -818,7 +827,9 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -958,6 +969,106 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816109743}
   m_CullTransparentMesh: 1
+--- !u!1 &965526800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 965526803}
+  - component: {fileID: 965526802}
+  - component: {fileID: 965526801}
+  m_Layer: 0
+  m_Name: Test
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &965526801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965526800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe360ae915fadfd468fbdb331dc84469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  importAssets: 0
+  importAssetPath: _ImportedOBJ
+  autoLoadOnStart: 1
+  objectsList:
+  - name: 
+    path: http://api.ar-education.xyz/constructor/school/models/11
+    skip: 0
+    loaderOptions:
+      zUp: 0
+      litDiffuse: 0
+      convertToDoubleSided: 0
+      modelScaling: 1
+      reuseLoaded: 1
+      inheritLayer: 0
+      buildColliders: 0
+      colliderConvex: 0
+      colliderTrigger: 0
+      use32bitIndices: 1
+      hideWhileLoading: 0
+      splitByMaterial: 0
+      localPosition: {x: 0, y: 0.1, z: 0}
+      localEulerAngles: {x: 0, y: 0, z: 0}
+      localScale: {x: 1, y: 1, z: 1}
+  defaultImportOptions:
+    zUp: 1
+    litDiffuse: 0
+    convertToDoubleSided: 0
+    modelScaling: 1
+    reuseLoaded: 1
+    inheritLayer: 0
+    buildColliders: 0
+    colliderConvex: 0
+    colliderTrigger: 0
+    use32bitIndices: 1
+    hideWhileLoading: 0
+    splitByMaterial: 0
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  pathSettings: {fileID: 965526802}
+--- !u!114 &965526802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965526800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e579ad933bbf124a947f0795cef45f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  editorRootPath: 0
+  defaultRootPath: 0
+  mobileRootPath: 0
+--- !u!4 &965526803
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965526800}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1092542019
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,8 +1292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 788587e994f1943f3856c1c332db429b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AnchorPrefab: {fileID: 739873256182091102, guid: 88335eba420e9d7418484b51a26693c4,
-    type: 3}
+  m_AnchorPrefab: {fileID: 0}
   rotationSliderActivator: {fileID: 21037641}
   scaleSliderActivator: {fileID: 749502574}
   rotationSlider: {fileID: 21037643}
@@ -1241,6 +1351,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Camera: {fileID: 505072767}
+  m_OriginBaseGameObject: {fileID: 1382819054}
+  m_CameraFloorOffsetObject: {fileID: 0}
+  m_RequestedTrackingOriginMode: 0
+  m_CameraYOffset: 1.1176
 --- !u!4 &1382819060
 Transform:
   m_ObjectHideFlags: 0
@@ -1537,6 +1651,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 783281575}
     m_Modifications:
     - target: {fileID: 7915114831982790530, guid: ce40accb44a2d6d4491121e52a170af2,
@@ -1670,6 +1785,9 @@ PrefabInstance:
       value: LessonOpen
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce40accb44a2d6d4491121e52a170af2, type: 3}
 --- !u!224 &1927263691 stripped
 RectTransform:

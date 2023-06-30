@@ -19,7 +19,6 @@ public class ListViewScript : MonoBehaviour
         for (int i = 0; i < TextInput.models.Length; i++)
         {
             StartCoroutine(DownloadImage("http://api.ar-education.xyz" + TextInput.models[i].previewLink));
-            //StartCoroutine(DownloadImage("https://bipbap.ru/wp-content/uploads/2021/11/1619541010_52-oir_mobi-p-nyashnie-kotiki-zhivotnie-krasivo-foto-57.jpg"));
         }
     }
 
@@ -29,7 +28,6 @@ public class ListViewScript : MonoBehaviour
         {
             createdCard = Instantiate(cardPrefab, this.transform);
             createdCard.transform.GetChild(0).GetComponent<TMP_Text>().text = TextInput.models[i].name;
-            //StartCoroutine(DownloadImage("http://api.ar-education.xyz" + TextInput.models[i].previewLink));
             createdCard.transform.GetChild(2).GetComponent<TMP_Text>().text = TextInput.models[i].description;
         }
     }
@@ -42,9 +40,6 @@ public class ListViewScript : MonoBehaviour
             request.SetRequestHeader("Authorization", $"Bearer {TextInput.token}");
             yield return request.SendWebRequest();
 
-            //byte[] bytes = request.downloadHandler.data;
-            //File.WriteAllBytes(Application.dataPath + "/Export.jpeg", bytes);
-
             if (request.result == UnityWebRequest.Result.ProtocolError)
             {
                 Debug.Log(request.error);
@@ -52,7 +47,6 @@ public class ListViewScript : MonoBehaviour
             else
             {
                 tex = DownloadHandlerTexture.GetContent(request);
-                //tex = ((DownloadHandlerTexture)request.downloadHandler).texture;
                 createdCard.transform.GetChild(1).GetComponent<RawImage>().texture = tex;
             }
         }

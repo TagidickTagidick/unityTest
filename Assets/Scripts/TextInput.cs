@@ -15,7 +15,7 @@ public class TextInput : MonoBehaviour
     public static string description;
     public static Model[] models;
     public static string token;
-    public static int codeLength = 6, modelsNumber;
+    public static int codeLength = 4, modelsNumber;
 
     public void ReadStringInput(string s)
     {

@@ -14,9 +14,5 @@ public class LessonScript : MonoBehaviour
     {
         nameWidget.GetComponent<TMP_Text>().text = TextInput.name;
         descriptionWidget.GetComponent<TMP_Text>().text = TextInput.description;
-
-
-
-        //Destroy(buttonTemplate);
     }
 }
