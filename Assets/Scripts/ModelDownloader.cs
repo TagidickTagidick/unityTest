@@ -14,6 +14,7 @@ public class ModelDownloader : MonoBehaviour
 
     private void Start()
     {
+        isModelDownloaded = false;
         filePath = $"{Application.persistentDataPath}/Files/";
         wrapper = new GameObject
         {
@@ -75,7 +76,7 @@ public class ModelDownloader : MonoBehaviour
 
     IEnumerator GetFileRequest(string url)
     {
-
+        isModelDownloaded = false;
         using (UnityWebRequest ddd = UnityWebRequest.Get(url))
         {
             Debug.Log(token);

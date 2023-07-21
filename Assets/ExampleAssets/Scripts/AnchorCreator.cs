@@ -52,15 +52,10 @@ public class AnchorCreator : MonoBehaviour
     {
         StartCoroutine(WaitUntilModelDownloaded());
         
-
-
         m_RaycastManager = GetComponent<ARRaycastManager>();
         m_AnchorManager = GetComponent<ARAnchorManager>();
         m_PlaneManager = GetComponent<ARPlaneManager>();
         m_AnchorPoints = new List<ARAnchor>();
-
-        IsCreated = false;
-        startScaleSize = m_AnchorPrefab.transform.localScale;
 
         //m_AnchorPrefab = ModelDownloader.model.transform.GetChild(1).gameObject;
         //Тут надо сделать ожидание подгрузки модели
@@ -69,8 +64,10 @@ public class AnchorCreator : MonoBehaviour
 
     IEnumerator WaitUntilModelDownloaded()
     {
+        ModelDownloader.isModelDownloaded = false;
         yield return new WaitUntil(() => ModelDownloader.isModelDownloaded);
         m_AnchorPrefab = ModelDownloader.model;
+        startScaleSize = m_AnchorPrefab.transform.localScale;
     }
 
     void Update()
@@ -88,6 +85,9 @@ public class AnchorCreator : MonoBehaviour
 
         if (m_RaycastManager.Raycast(touch.position, s_Hits, TrackableType.PlaneWithinPolygon))
         {
+            Debug.Log(m_AnchorPrefab);
+            Debug.Log(ModelDownloader.model);
+            Debug.Log(ModelDownloader.isModelDownloaded);
             //If touch position on y axis is lower than 15% of screen height (in px), then simply 
             //do nothing until the next call to Update().
             Vector2 touchDeltaPosition = touch.position;
